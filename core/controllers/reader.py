@@ -56,6 +56,22 @@ DEFAULT_TWITTER_SHARE_MESSAGE_PLAYER = config_domain.ConfigProperty(
 
 def _get_exploration_player_data(
         exploration_id, version, collection_id, can_edit):
+    """Fetches exploration player data.
+
+    Args:
+        exploration_id: id of the current exploration.
+        version: current version of the current exploration.
+        collection_id: id of the current collection.
+        can_edit: is the exploration editable.
+
+    Returns:
+        A dict containing all exploration and collection
+        data obtained from the current instance.
+
+    Raises:
+        Exception if getting exploration by id fails.
+        Exception if getting collection by id fails.
+    """
     try:
         exploration = exp_services.get_exploration_by_id(
             exploration_id, version=version)
@@ -112,7 +128,7 @@ def _get_exploration_player_data(
         'meta_name': exploration.title,
         # Note that this overwrites the value in base.py.
         'meta_description': utils.capitalize_string(exploration.objective),
-        'nav_mode': feconf.NAV_MODE_EXPLORE,
+        'nav_mode': feconf.NAV_MODE_EXPLORE
     }
 
 
